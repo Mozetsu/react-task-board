@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Header from './components/Header';
 import Tasks from './components/Tasks';
+import NoTask from './components/NoTask';
 import AddTask from './components/AddTask';
 
 function App() {
@@ -8,20 +9,20 @@ function App() {
 	const [tasks, setTasks] = useState([
 		{
 			id: 1,
-			text: 'Doctors appointment',
-			day: 'Feb 5th at 2:30pm',
+			text: 'Appointment One',
+			day: 'Feb 21 2:30pm',
 			reminder: true,
 		},
 		{
 			id: 2,
-			text: 'Meeting at School',
-			day: 'Feb 12th at 2:30pm',
-			reminder: false,
+			text: 'Appointment Two',
+			day: 'Feb 29 1pm',
+			reminder: true,
 		},
 		{
 			id: 3,
-			text: 'Shopping',
-			day: 'Feb 15th at 2:30pm',
+			text: 'Appointment Three',
+			day: 'Mar 1 9:30am',
 			reminder: false,
 		},
 	]);
@@ -44,10 +45,10 @@ function App() {
 	};
 
 	return (
-		<div className="container">
-			<Header onAdd={() => setShowAddTask(!showAddTask)} showAdd={showAddTask} title="React Task Board" />
+		<div className="container p-6 is-max-desktop">
+			<Header onAdd={() => setShowAddTask(!showAddTask)} showAdd={showAddTask} title="The-Amazing-Task-Board" />
 			{showAddTask && <AddTask onAdd={addTask} />}
-			{tasks.length > 0 ? <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} /> : 'No tasks here...'}
+			{tasks.length > 0 ? <Tasks tasks={tasks} onToggle={toggleReminder} onDelete={deleteTask} /> : <NoTask />}
 		</div>
 	);
 }

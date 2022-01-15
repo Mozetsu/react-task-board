@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export const AddTask = ({ onAdd }) => {
+const AddTask = ({ onAdd }) => {
 	const [text, setText] = useState('');
 	const [day, setDay] = useState('');
 	const [reminder, setReminder] = useState(false);
@@ -9,7 +9,7 @@ export const AddTask = ({ onAdd }) => {
 		e.preventDefault();
 
 		if (!text) {
-			alert('Task name required!');
+			return alert('Task name required!');
 		}
 
 		onAdd({ text, day, reminder });
@@ -20,25 +20,42 @@ export const AddTask = ({ onAdd }) => {
 	};
 
 	return (
-		<form className="add-form" onSubmit={onSubmit}>
-			<div className="form-control">
-				<label>Task</label>
-				<input type="text" placeholder="Add task..." value={text} onChange={(e) => setText(e.target.value)}></input>
+		<form className="mb-6" onSubmit={onSubmit}>
+			<div className="field">
+				<label className="label">Task</label>
+				<div className="control">
+					<input
+						className="input"
+						type="text"
+						placeholder="Task title..."
+						value={text}
+						onChange={(e) => setText(e.target.value)}
+					></input>
+				</div>
 			</div>
-			<div className="form-control">
-				<label>Day and Time</label>
-				<input type="text" placeholder="Add day and time" value={day} onChange={(e) => setDay(e.target.value)}></input>
+			<div className="field">
+				<label className="label">Day and Time</label>
+				<div className="control">
+					<input
+						className="input"
+						type="text"
+						placeholder="Day..."
+						value={day}
+						onChange={(e) => setDay(e.target.value)}
+					></input>
+				</div>
 			</div>
-			<div className="form-control form-control-check">
-				<label>Set reminder</label>
+			<div className="field ">
+				<label className="label">Set reminder</label>
 				<input
+					className="p-2 is-large"
 					type="checkbox"
 					checked={reminder}
 					value={reminder}
 					onChange={(e) => setReminder(e.currentTarget.checked)}
 				></input>
 			</div>
-			<input className="btn btn-block" type="submit" value="Save"></input>
+			<input className="button is-medium is-primary  is-fullwidth" type="submit" value="Save"></input>
 		</form>
 	);
 };

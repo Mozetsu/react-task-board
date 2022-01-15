@@ -1,6 +1,6 @@
-const Button = ({ color, text, onClick }) => {
+const Button = ({ text, onAdd, showAdd }) => {
 	return (
-		<button onClick={onClick} className="btn">
+		<button onClick={onAdd} className={`button is-medium ${showAdd ? 'is-danger is-light' : 'is-primary'}`}>
 			{text}
 		</button>
 	);
